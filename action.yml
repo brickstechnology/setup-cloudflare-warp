@@ -12,6 +12,9 @@ inputs:
   auth_client_secret:
     description: 'The service token client secret'
     required: true
+  unique_client_id:
+    description: 'The unique client id'
+    required: true
 runs:
   using: 'node20'
   main: 'dist/index.js'
