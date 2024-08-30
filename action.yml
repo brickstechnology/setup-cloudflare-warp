@@ -1,4 +1,4 @@
-name: 'Setup Cloudflare Warp'
+name: 'Setup Cloudflare Warp With id'
 description: 'Sets up the Cloudflare Warp client in your GitHub Actions workflow.'
 inputs:
   version:
