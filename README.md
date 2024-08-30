@@ -17,6 +17,7 @@ with:
   organization: your-organization
   auth_client_id: ${{ secrets.CLOUDFLARE_AUTH_CLIENT_ID }}
   auth_client_secret: ${{ secrets.CLOUDFLARE_AUTH_CLIENT_SECRET }}
+  unique_client_id: ${{ secrets.CLOUDFLARE_UNIQUE_CLIENT_ID }}
 ```
 You can specify the version of Cloudflare WARP to install:
 ```yaml
@@ -26,6 +27,8 @@ with:
   organization: your-organization
   auth_client_id: ${{ secrets.CLOUDFLARE_AUTH_CLIENT_ID }}
   auth_client_secret: ${{ secrets.CLOUDFLARE_AUTH_CLIENT_SECRET }}
+  unique_client_id: ${{ secrets.CLOUDFLARE_UNIQUE_CLIENT_ID }}
+
 ```
 
 ## Inputs
@@ -33,6 +36,7 @@ with:
 - `organization` - (required) The name of your Cloudflare Zero Trust organization.
 - `auth_client_id` - (required) The service token client id.
 - `auth_client_secret` - (required) The service token client secret.
+- `unique_client_id` - (required) A unique identifier for the client. This can be any string.
 
 ## Troubleshooting
 - Unable to connect: `Status update: Unable to connect. Reason: Registration Missing` errors
