@@ -1,6 +1,6 @@
 {
   "name": "setup-cloudflare-warp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GitHub Action to setup Cloudflare Warp",
   "main": "dist/index.js",
   "scripts": {
