@@ -31077,9 +31077,9 @@ async function checkWARPConnected() {
 }
 
 async function startWARPServiceIfInContainer() {
-  // check the system have systemd
-  if (external_fs_.existsSync("/etc/systemd/system")) {
-    core.info("Found systemd, Assuming the service is already started");
+  // check is the system have systemctl command
+  if ((await exec.exec("systemctl --version")) === 0) {
+    core.info("Systemctl command found, assuming systemd is present");
     return;
   }
 
