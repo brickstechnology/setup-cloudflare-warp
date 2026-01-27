@@ -31076,6 +31076,30 @@ async function checkWARPConnected() {
   }
 }
 
+async function startWARPServiceIfInContainer() {
+  // check the system have systemd
+  if (external_fs_.existsSync("/etc/systemd/system")) {
+    core.info("Found systemd, Assuming the service is already started");
+    return;
+  }
+
+  // start dbus
+  core.info("Starting dbus");
+  await exec.exec("mkdir -p /run/dbus");
+  if (external_fs_.existsSync("/run/dbus/pid")) {
+    await exec.exec("rm /run/dbus/pid");
+  }
+  await exec.exec("dbus-daemon --config-file=/usr/share/dbus-1/system.conf");
+
+  // start warp-service
+  core.info("Starting warp-service");
+  await exec.exec("warp-svc --accept-tos &");
+
+  // wait for the service to start
+  core.info("Waiting for the service to start");
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // 2 seconds
+}
+
 async function run() {
   if (!["linux", "darwin", "win32"].includes(process.platform)) {
     throw new Error(
@@ -31124,6 +31148,8 @@ async function run() {
       await installWindowsClient(version);
       break;
   }
+
+  await startWARPServiceIfInContainer();
 
   await (0,backoff.backOff)(
     () => checkWARPRegistration(organization, true),
