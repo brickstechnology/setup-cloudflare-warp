@@ -31090,12 +31090,12 @@ async function startWARPServiceIfInContainer() {
   }
 
   // start dbus
-  core.info("Starting dbus");
-  await exec.exec("mkdir -p /run/dbus");
-  if (external_fs_.existsSync("/run/dbus/pid")) {
-    await exec.exec("rm /run/dbus/pid");
-  }
-  await exec.exec("dbus-daemon --config-file=/usr/share/dbus-1/system.conf");
+  // core.info("Starting dbus");
+  // await exec.exec("mkdir -p /run/dbus");
+  // if (fs.existsSync("/run/dbus/pid")) {
+  //   await exec.exec("rm /run/dbus/pid");
+  // }
+  // await exec.exec("dbus-daemon --config-file=/usr/share/dbus-1/system.conf");
 
   // start warp-service
   core.info("Starting warp-service");
