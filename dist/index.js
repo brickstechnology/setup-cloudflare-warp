@@ -31078,8 +31078,12 @@ async function checkWARPConnected() {
 
 async function startWARPServiceIfInContainer() {
   // check is the system have systemctl command
-  if ((await exec.exec("systemctl --version")) === 0) {
-    core.info("Systemctl command found, assuming systemd is present");
+  const hasSystemctl = (await exec.exec("systemctl --version")) === 0;
+  if (hasSystemctl) {
+    core.info(
+      "Systemctl command found, starting warp-svc.service using systemctl",
+    );
+    await exec.exec("systemctl start warp-svc.service");
     return;
   }
 
@@ -31097,7 +31101,6 @@ async function startWARPServiceIfInContainer() {
 
   // wait for the service to start
   core.info("Waiting for the service to start");
-  await new Promise((resolve) => setTimeout(resolve, 2000)); // 2 seconds
 }
 
 async function run() {
