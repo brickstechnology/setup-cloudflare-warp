@@ -45,6 +45,12 @@
     "cross-spawn": "7.0.5",
     "flatted": "3.4.2",
     "js-yaml": "4.3.2",
-    "minimatch": "3.1.4"
+    "minimatch": "3.1.4",
+    "@fastify/busboy": "3.2.2",
+    "undici": "6.29.1",
+    "uuid@^8": "11.1.1",
+    "@actions/tool-cache": {
+      "uuid": "11.1.1"
+    }
   }
 }
